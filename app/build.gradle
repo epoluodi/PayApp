@@ -21,8 +21,11 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile files('libs/core-3.2.2-SNAPSHOT.jar')
+    compile project(':CordovaLib')
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.github.wendux:DSBridge-Android:2.0-SNAPSHOT'
-    compile files('libs/core-3.2.2-SNAPSHOT.jar')
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile files('libs/eptapilibrary.jar')
+    compile files('libs/pinpad.jar')
 }

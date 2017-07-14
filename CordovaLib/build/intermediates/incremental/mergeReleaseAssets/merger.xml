@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Volumes/文件/个人项目/昂立移动支付/PayApp/CordovaLib/assets"/><source path="/Volumes/文件/个人项目/昂立移动支付/PayApp/CordovaLib/build/generated/assets/shaders/release"/></dataSet><dataSet config="release"><source path="/Volumes/文件/个人项目/昂立移动支付/PayApp/CordovaLib/src/release/assets"/></dataSet></merger>
