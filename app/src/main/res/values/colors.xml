@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">@color/appcorlor1</color>
 
     <color name="red">#FF5640</color>
     <color name="green">#48FF28</color>
@@ -23,6 +23,11 @@
     <color name="blackTransparentD">#D0000000</color>
     <color name="blackTransparentE">#E0000000</color>
     <color name="blackTransparentF">#F0000000</color>
+    <color name="appcorlor1">#7099f8</color>
+    <color name="appcorlor11">#FFA1BAF4</color>
+
+    <color name="appcorlor2">#f29d39</color>
+    <color name="appcorlor22">#f5ba74</color>
     <color name="white">#FFFFFF</color>
     <color name="msgdtwhite">#666666</color>
     <!-- 白色 -->

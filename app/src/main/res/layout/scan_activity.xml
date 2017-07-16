@@ -24,21 +24,12 @@
     <RelativeLayout
 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:background="@color/blackTransparent8"
 
         >
 
-        <ImageView
-            android:id="@+id/title_left_menu_image"
-            android:layout_width="50dp"
-            android:layout_height="26dp"
-            android:layout_alignParentBottom="true"
 
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/back_bar_left_selector" />
 
         <TextView
             android:id="@+id/title_text"
@@ -46,31 +37,44 @@
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="5dp"
+
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_toLeftOf="@+id/pre_left_title_btn"
-            android:layout_toRightOf="@+id/title_left_menu_image"
-            android:gravity="center_horizontal|center_vertical|bottom"
-            android:singleLine="true"
-            android:text="二维码/条码"
-            android:textColor="@color/white"
-            android:textSize="18dp" />
 
-        <Button
-            android:id="@+id/pre_left_title_btn"
-            android:layout_width="50dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:background="@color/transparent"
-            android:gravity="center_vertical|center_horizontal"
-            android:text="取消"
+            android:gravity="center_horizontal|center_vertical"
+            android:singleLine="true"
+            android:text="二维码/条形码"
+
             android:textColor="@color/white"
-            android:visibility="invisible" />
+            android:textSize="24dp" />
+
+
 
     </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="扫码合同二维码"
+        android:textSize="22dp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:layout_marginTop="90dp"
+        />
+
+
+    <Button
+        android:id="@+id/btninputcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="手动输入合同号"
+        android:background="@null"
+        android:textSize="22dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="50dp"
+        android:textColor="@drawable/scan_input_selector"
+        />
 
 
     <!--<LinearLayout-->

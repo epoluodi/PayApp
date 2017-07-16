@@ -69,7 +69,7 @@ public final class ViewfinderView extends View {
     // Initialize these once for performance rather than calling them every time in onDraw().
     paint = new Paint();
     Resources resources = getResources();
-    maskColor = resources.getColor(R.color.viewfinder_mask);
+    maskColor = resources.getColor(R.color.blackTransparent9);
     resultColor = resources.getColor(R.color.result_view);
     frameColor = resources.getColor(R.color.white);
     laserColor = resources.getColor(R.color.viewfinder_laser2);
@@ -144,7 +144,7 @@ public final class ViewfinderView extends View {
 //        offset -= 10;
 //      }
       if (iScanLine != null) {
-        Rect rect =new Rect(frame.left + 2, frame.top +offset, frame.right - 1,  frame.top +offset+3);
+        Rect rect =new Rect(frame.left + 2, frame.top +offset, frame.right - 1,  frame.bottom  - frame.top- 15);
 //        Rect rect =new Rect(162,389,639,392);
         iScanLine.OnDrawLine(rect);
       }
@@ -153,26 +153,26 @@ public final class ViewfinderView extends View {
 
 //        canvas.drawRect(frame.left + 2, frame.top +offset, frame.right - 1,  frame.top +offset+3, paint);
 
-      Collection<ResultPoint> currentPossible = possibleResultPoints;
-      Collection<ResultPoint> currentLast = lastPossibleResultPoints;
-      if (currentPossible.isEmpty()) {
-        lastPossibleResultPoints = null;
-      } else {
-        possibleResultPoints = new HashSet<ResultPoint>(5);
-        lastPossibleResultPoints = currentPossible;
-        paint.setAlpha(OPAQUE);
-        paint.setColor(resultPointColor);
-        for (ResultPoint point : currentPossible) {
-          canvas.drawCircle(frame.left + point.getX(), frame.top + point.getY(), 6.0f, paint);
-        }
-      }
-      if (currentLast != null) {
-        paint.setAlpha(OPAQUE / 2);
-        paint.setColor(resultPointColor);
-        for (ResultPoint point : currentLast) {
-          canvas.drawCircle(frame.left + point.getX(), frame.top + point.getY(), 3.0f, paint);
-        }
-      }
+//      Collection<ResultPoint> currentPossible = possibleResultPoints;
+//      Collection<ResultPoint> currentLast = lastPossibleResultPoints;
+//      if (currentPossible.isEmpty()) {
+//        lastPossibleResultPoints = null;
+//      } else {
+//        possibleResultPoints = new HashSet<ResultPoint>(5);
+//        lastPossibleResultPoints = currentPossible;
+//        paint.setAlpha(OPAQUE);
+//        paint.setColor(resultPointColor);
+//        for (ResultPoint point : currentPossible) {
+//          canvas.drawCircle(frame.left + point.getX(), frame.top + point.getY(), 6.0f, paint);
+//        }
+//      }
+//      if (currentLast != null) {
+//        paint.setAlpha(OPAQUE / 2);
+//        paint.setColor(resultPointColor);
+//        for (ResultPoint point : currentLast) {
+//          canvas.drawCircle(frame.left + point.getX(), frame.top + point.getY(), 3.0f, paint);
+//        }
+//      }
 
       // Request another update at the animation interval, but only repaint the laser line,
       // not the entire viewfinder mask.

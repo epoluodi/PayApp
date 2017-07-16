@@ -32,8 +32,8 @@ public class PayServicePlugin extends CordovaPlugin {
         {
             Log.i("支付接口","签到");
             Intent intent = new Intent();
-            intent.setComponent(new ComponentName("com.landicorp.android.payservice",
-                    "com.landicorp.android.payservice.MainActivity"));
+            intent.setComponent(new ComponentName("com.landicorp.android.unionpay",
+                    "com.landicorp.android.unionpay.TestActivity"));
             intent.putExtra("transName", "签到");
             cordova.getActivity().startActivityForResult(intent, 0);
             return true;
@@ -46,8 +46,8 @@ public class PayServicePlugin extends CordovaPlugin {
             Log.i("支付接口","消费");
             String amount = args.getString(0);
             Intent intent = new Intent();
-            intent.setComponent(new ComponentName("com.landicorp.android.payservice",
-                    "com.landicorp.android.payservice.MainActivity"));
+            intent.setComponent(new ComponentName("com.landicorp.android.unionpay",
+                    "com.landicorp.android.unionpay.TestActivity"));
             intent.putExtra("transName", "消费");
             intent.putExtra("amount", amount);
             cordova.getActivity().startActivityForResult(intent, 0);
@@ -61,8 +61,8 @@ public class PayServicePlugin extends CordovaPlugin {
             Log.i("支付接口","消费撤销");
             String oldTrace = args.getString(0);
             Intent intent = new Intent();
-            intent.setComponent(new ComponentName("com.landicorp.android.payservice",
-                    "com.landicorp.android.payservice.MainActivity"));
+            intent.setComponent(new ComponentName("com.landicorp.android.unionpay",
+                    "com.landicorp.android.unionpay.TestActivity"));
             intent.putExtra("transName", "消费撤销");
             intent.putExtra("oldTrace", oldTrace);
             cordova.getActivity().startActivityForResult(intent, 0);
@@ -77,8 +77,8 @@ public class PayServicePlugin extends CordovaPlugin {
             Log.i("支付接口","退货");
             String amount = args.getString(0);
             Intent intent = new Intent();
-            intent.setComponent(new ComponentName("com.landicorp.android.payservice",
-                    "com.landicorp.android.payservice.MainActivity"));
+            intent.setComponent(new ComponentName("com.landicorp.android.unionpay",
+                    "com.landicorp.android.unionpay.TestActivity"));
             intent.putExtra("transName", "退货");
             intent.putExtra("amount", amount);
             cordova.getActivity().startActivityForResult(intent, 0);
@@ -92,8 +92,8 @@ public class PayServicePlugin extends CordovaPlugin {
         {
             Log.i("支付接口","余额查询");
             Intent intent = new Intent();
-            intent.setComponent(new ComponentName("com.landicorp.android.payservice",
-                    "com.landicorp.android.payservice.MainActivity"));
+            intent.setComponent(new ComponentName("com.landicorp.android.unionpay",
+                    "com.landicorp.android.unionpay.TestActivity"));
             intent.putExtra("transName", "余额查询");
             cordova.getActivity().startActivityForResult(intent, 0);
 
@@ -105,8 +105,8 @@ public class PayServicePlugin extends CordovaPlugin {
         {
             Log.i("支付接口","结算");
             Intent intent = new Intent();
-            intent.setComponent(new ComponentName("com.landicorp.android.payservice",
-                    "com.landicorp.android.payservice.MainActivity"));
+            intent.setComponent(new ComponentName("com.landicorp.android.unionpay",
+                    "com.landicorp.android.unionpay.TestActivity"));
             intent.putExtra("transName", "结算");
             cordova.getActivity().startActivityForResult(intent, 0);
 
@@ -118,8 +118,8 @@ public class PayServicePlugin extends CordovaPlugin {
         {
             Log.i("支付接口","系统管理");
             Intent intent = new Intent();
-            intent.setComponent(new ComponentName("com.landicorp.android.payservice",
-                    "com.landicorp.android.payservice.MainActivity"));
+            intent.setComponent(new ComponentName("com.landicorp.android.unionpay",
+                    "com.landicorp.android.unionpay.TestActivity"));
             intent.putExtra("transName", "系统管理");
             cordova.getActivity().startActivityForResult(intent, 0);
 
@@ -131,8 +131,8 @@ public class PayServicePlugin extends CordovaPlugin {
         {
             Log.i("支付接口","打印");
             Intent intent = new Intent();
-            intent.setComponent(new ComponentName("com.landicorp.android.payservice",
-                    "com.landicorp.android.payservice.MainActivity"));
+            intent.setComponent(new ComponentName("com.landicorp.android.unionpay",
+                    "com.landicorp.android.unionpay.TestActivity"));
             intent.putExtra("transName", "打印");
             cordova.getActivity().startActivityForResult(intent, 0);
 
@@ -144,8 +144,8 @@ public class PayServicePlugin extends CordovaPlugin {
         {
             Log.i("支付接口","初始化打印机");
             Intent intent = new Intent();
-            intent.setComponent(new ComponentName("com.landicorp.android.payservice",
-                    "com.landicorp.android.payservice.MainActivity"));
+            intent.setComponent(new ComponentName("com.landicorp.android.unionpay",
+                    "com.landicorp.android.unionpay.TestActivity"));
             intent.putExtra("transName", "初始化打印机");
             cordova.getActivity().startActivityForResult(intent, 0);
 
@@ -153,6 +153,7 @@ public class PayServicePlugin extends CordovaPlugin {
         }
         return true;
     }
+
 
 
 }

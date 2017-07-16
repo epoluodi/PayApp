@@ -32,6 +32,7 @@ import com.google.zxing.Result;
 import java.io.IOException;
 import java.util.Vector;
 
+import onlyedu.com.payapp.InputCodeActivity;
 import onlyedu.com.payapp.R;
 import onlyedu.com.payapp.Scan.camera.CameraManager;
 import onlyedu.com.payapp.Scan.decoding.CaptureActivityHandler;
@@ -62,8 +63,8 @@ public class ScanActivity extends Activity implements Callback {
     private boolean vibrate;
     ImageView imageViewline = null;
     FrameLayout mainview;
-    ImageView returnview;
-    TextView textView;
+    private TextView textView;
+    private Button btninputcode;
 
 
 
@@ -76,9 +77,9 @@ public class ScanActivity extends Activity implements Callback {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scan_activity);
-        returnview = (ImageView) findViewById(R.id.title_left_menu_image);
-        returnview.setOnClickListener(onClickListenerreturn);
+
         mainview = (FrameLayout) findViewById(R.id.mainview);
+        btninputcode = (Button)findViewById(R.id.btninputcode);
         System.gc();//释放内存
         CameraManager.init(getApplication());
         CameraManager.get().setScantype(1);
@@ -88,22 +89,26 @@ public class ScanActivity extends Activity implements Callback {
         inactivityTimer = new InactivityTimer(this);
 
         viewfinderView.setOnScanLine(iScanLine);
-
+        btninputcode.setOnClickListener(onClickListenerinputcode);
 
     }
 
 
-
-
-
-    View.OnClickListener onClickListenerreturn = new View.OnClickListener() {
+    /**
+     * 手动输入条码
+     */
+    View.OnClickListener onClickListenerinputcode = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            finish();
-            overridePendingTransition(R.anim.alpha, R.anim.slide_out_to_bottom);
-        }
 
+            Intent intent=new Intent(ScanActivity.this, InputCodeActivity.class);
+            startActivity(intent);
+        }
     };
+
+
+
+
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
@@ -160,7 +165,7 @@ public class ScanActivity extends Activity implements Callback {
 
 //
                 textView = new TextView(ScanActivity.this);
-                textView.setText("条码，二维码放入扫描框内");
+                textView.setText("将二维码/条形码放入框内，即可自动扫描");
                 textView.setTextColor(getResources().getColor(R.color.white));
                 textView.setTextSize(12);
 
@@ -170,8 +175,9 @@ public class ScanActivity extends Activity implements Callback {
                         rect1.right - rect1.left,
                         50);
                 textView.setGravity(Gravity.CENTER);
-                layoutParams2.setMargins(rect1.left, rect1.bottom, rect1.right, rect1.bottom + 50);
+                layoutParams2.setMargins(rect1.left, rect1.bottom, rect1.right, rect1.bottom );
                 mainview.addView(textView, layoutParams2);
+
 
 
             }
@@ -201,9 +207,9 @@ public class ScanActivity extends Activity implements Callback {
             handler = null;
         }
         CameraManager.get().closeDriver();
-        setResult(0);
-        finish();
-        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+//        setResult(0);
+//        finish();
+//        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 
     @Override

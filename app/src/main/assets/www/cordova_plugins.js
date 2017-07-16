@@ -4,19 +4,37 @@ module.exports = [
         "file": "plugins/PayService/PayServicePlugin.js",
         "id": "onlyedu.com.payapp.Plugin.PayServicePlugin",
         "merges": [
-        "PayService"
+        "payService"
         ]
     },
     {
         "file": "plugins/org.apache.cordova.system/www/SystemRequest.js",
         "id": "onlyedu.com.payapp.Plugin.SystemPlugin",
         "merges": [
-        "System"
+        "system"
         ]
     },
-
-
-
+    {
+        "file": "plugins/Ept/EptPlugin.js",
+        "id": "onlyedu.com.payapp.Plugin.EPTPlugin",
+        "merges": [
+        "ept"
+        ]
+    },
+    {
+        "file": "plugins/Ept/EptBeeperPlugin.js",
+        "id": "onlyedu.com.payapp.Plugin.EPTBeeperPlugin",
+        "merges": [
+        "ept.beeper"
+        ]
+    },
+    {
+        "file": "plugins/Ept/EptPrintPlugin.js",
+        "id": "onlyedu.com.payapp.Plugin.EPTPrintPlugin",
+        "merges": [
+        "ept.print"
+        ]
+    },
 ];
 module.exports.metadata = 
 // TOP OF METADATA

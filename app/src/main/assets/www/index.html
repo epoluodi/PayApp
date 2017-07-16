@@ -44,59 +44,84 @@
 <a class="long_button" onclick="click9()">支付接口=打印</a>
 <a class="long_button" onclick="click10()">支付接口=初始化打印</a>
 
+<a class="long_button" onclick="click11()">EPT接口=登录</a>
+<a class="long_button" onclick="click12()">EPT接口=登出</a>
+<a class="long_button" onclick="click13()">EPTBeeper接口=打开蜂鸣器</a>
+<a class="long_button" onclick="click14()">EPTBeeper接口=停止蜂鸣器</a>
+
+
+<a class="long_button" onclick="click15()">EPTPrint接口=进退纸</a>
+
+
 <script src="cordova.js" type="text/javascript"></script>
 
 <script>
-   document.addEventListener("deviceready",onDeviceReady,false);
-   function onDeviceReady(){
+    document.addEventListener("deviceready",onDeviceReady,false);
+    function onDeviceReady(){
 
-   }
+    }
 
-   function click1(){
-        System.toast("这个是一个测试");
-   }
+    function click1(){
+        system.toast("这个是一个测试");
+    }
 
-   function click2(){
-        PayService.sign();
-   }
+    function click2(){
+        payService.sign();
+    }
 
-   function click3(){
-        PayService.consume('0001100',function(v){
+    function click3(){
+        payService.consume('000000001000',function(v){
             alert(v);
         });
-   }
+    }
 
-   function click4(){
-        PayService.cancelConsume('0001100',function(v){
+    function click4(){
+        payService.cancelConsume('000000001000',function(v){
             alert(v);
         });
-   }
+    }
 
 
-   function click5(){
-        PayService.returnGoods('0001100',function(v){
+    function click5(){
+        payService.returnGoods('000000001000',function(v){
             alert(v);
         });
-   }
+    }
 
-   function click6(){
-        PayService.balanceInquiry();
-   }
+    function click6(){
+        payService.balanceInquiry();
+    }
 
-   function click7(){
-        PayService.settlement();
-   }
+    function click7(){
+        payService.settlement();
+    }
 
-   function click8(){
-        PayService.systemManage();
-   }
+    function click8(){
+        payService.systemManage();
+    }
 
-   function click9(){
-        PayService.print();
-   }
+    function click9(){
+        payService.print();
+    }
 
-   function click10(){
-        PayService.initPrint();
-   }
+    function click10(){
+        payService.initPrint();
+    }
+
+    function click11(){
+        ept.login();
+    }
+    function click12(){
+        ept.logout();
+    }
+    function click13(){
+        ept.beeper.startBeep(1200);
+    }
+    function click14(){
+        ept.beeper.stopBeep();
+    }
+    function click15(){
+        ept.print.feedLine(1);
+    }
 </script>
 </html>

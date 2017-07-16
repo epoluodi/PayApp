@@ -10,6 +10,15 @@
     <feature name="PayServicePlugin">
         <param name="android-package" value="onlyedu.com.payapp.Plugin.PayServicePlugin" />
     </feature>
+    <feature name="EPTPlugin">
+        <param name="android-package" value="onlyedu.com.payapp.Plugin.EPTPlugin" />
+    </feature>
+    <feature name="EPTBeeperPlugin">
+        <param name="android-package" value="onlyedu.com.payapp.Plugin.EPTBeeperPlugin" />
+    </feature>
+    <feature name="EPTPrintPlugin">
+        <param name="android-package" value="onlyedu.com.payapp.Plugin.EPTPrintPlugin" />
+    </feature>
     <name>Pay</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.

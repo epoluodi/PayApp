@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="onlyedu.com.payapp.TestActivity">
+
+    <TextView
+        android:id="@+id/code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="160dp"
+        android:gravity="center_horizontal"
+        android:text="扫描结果"
+        android:textColor="@color/green1"
+        android:textSize="28dp" />
+
+    <Button
+        android:id="@+id/btnscan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+
+        android:text="扫描" />
+
+    <Button
+        android:id="@+id/btnopenweb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnscan"
+        android:layout_centerHorizontal="true"
+
+        android:text="打开web" />
+    <Button
+        android:id="@+id/btncodedo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnopenweb"
+        android:layout_centerHorizontal="true"
+
+        android:text="条码处理" />
+
+    <TextView
+        android:id="@+id/codeResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btncodedo"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:text="扫描结果"
+        android:textColor="@color/green1"
+        android:textSize="28dp" />
+
+</RelativeLayout>

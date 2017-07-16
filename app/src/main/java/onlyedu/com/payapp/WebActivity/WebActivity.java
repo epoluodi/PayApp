@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.widget.Toast;
 
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
@@ -14,6 +16,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import onlyedu.com.payapp.R;
+import onlyedu.com.payapp.Scan.ScanActivity;
 
 public class WebActivity extends AppCompatActivity implements CordovaInterface {
 
@@ -24,13 +27,33 @@ public class WebActivity extends AppCompatActivity implements CordovaInterface {
         setContentView(R.layout.activity_web);
 
         cordovaWebView = (CordovaWebView)findViewById(R.id.cordovaWebView);
-
+//        file:///android_asset/www/index.html
         cordovaWebView.loadUrl("file:///android_asset/www/index.html");
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (resultCode)
+        {
+            case RESULT_OK:
+                break;
+            case RESULT_CANCELED:
+                String reason = data.getStringExtra("reason");
+                if(reason != null) {
+                    Toast.makeText(WebActivity.this, reason, Toast.LENGTH_SHORT).show();
+                }
+
+                break;
+        }
+        Log.i("onActivityResult 回调 " ,String.valueOf(requestCode));
+
+    }
     @Override
     public void startActivityForResult(CordovaPlugin command, Intent intent, int requestCode) {
-
+        Log.i("webActivity 回调 " ,String.valueOf(requestCode));
     }
 
     @Override
@@ -77,6 +100,13 @@ public class WebActivity extends AppCompatActivity implements CordovaInterface {
     }
 
 
+
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        Log.i("", "dispatchKeyEvent: keyCode -- " + event.getKeyCode());
+        return super.dispatchKeyEvent(event);
+    }
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode ==4)

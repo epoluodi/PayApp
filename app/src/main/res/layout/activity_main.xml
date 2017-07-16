@@ -6,53 +6,40 @@
     android:layout_height="match_parent"
     tools:context="onlyedu.com.payapp.MainActivity">
 
-    <TextView
-        android:id="@+id/code"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="160dp"
-        android:gravity="center_horizontal"
-        android:text="扫描结果"
-        android:textColor="@color/green1"
-        android:textSize="28dp" />
-
-    <Button
-        android:id="@+id/btnscan"
+    <ImageView
+        android:id="@+id/img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="60dp"
+        android:background="@mipmap/ic_launcher" />
 
-        android:text="扫描" />
 
     <Button
-        android:id="@+id/btnopenweb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnscan"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_below="@+id/img"
         android:layout_centerHorizontal="true"
-
-        android:text="打开web" />
+        android:layout_marginTop="60dp"
+        android:background="@drawable/btn1_main_selector"
+        android:text="合同扫码"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:id="@+id/btn1"
+        />
     <Button
-        android:id="@+id/btncodedo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnopenweb"
+        android:id="@+id/btn2"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:text="扫码签到"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/btn2_main_selector"
+        android:layout_below="@+id/btn1"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:layout_centerHorizontal="true"
 
-        android:text="条码处理" />
+        />
 
-    <TextView
-        android:id="@+id/codeResult"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/btncodedo"
-        android:layout_marginTop="5dp"
-        android:gravity="center_horizontal"
-        android:text="扫描结果"
-        android:textColor="@color/green1"
-        android:textSize="28dp" />
 
 </RelativeLayout>

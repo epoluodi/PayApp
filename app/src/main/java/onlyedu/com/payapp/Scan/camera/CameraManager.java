@@ -265,15 +265,15 @@ public final class CameraManager {
             } else if (width > MAX_FRAME_WIDTH) {
                 width = MAX_FRAME_WIDTH;
             }
-            int height = screenResolution.y / 3;
+            int height = screenResolution.y / 2;
 //            if (height < MIN_FRAME_HEIGHT) {
 //                height = MIN_FRAME_HEIGHT;
 //            } else if (height > MAX_FRAME_HEIGHT) {
 //                height = MAX_FRAME_HEIGHT;
 //            }
-
-            int leftOffset = (screenResolution.x - width) / 4;
-            int topOffset = (screenResolution.y - height) / 2-50;
+            width = height;
+            int leftOffset = (screenResolution.x - width) / 2;
+            int topOffset = (screenResolution.y - height) / 2-80;
             framingRect = new Rect(leftOffset, topOffset, screenResolution.x -leftOffset, topOffset + height);
             Log.d(TAG, "Calculated framing rect: " + framingRect);
         }

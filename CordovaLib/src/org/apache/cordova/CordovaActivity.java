@@ -81,6 +81,7 @@ import android.widget.LinearLayout;
  * deprecated in favor of the config.xml file.
  *
  */
+@SuppressWarnings("ResourceType")
 public class CordovaActivity extends Activity implements CordovaInterface {
     public static String TAG = "CordovaActivity";
 
@@ -241,6 +242,7 @@ public class CordovaActivity extends Activity implements CordovaInterface {
     }
 
     @SuppressWarnings("deprecation")
+
     protected void createViews() {
         // This builds the view.  We could probably get away with NOT having a LinearLayout, but I like having a bucket!
 
