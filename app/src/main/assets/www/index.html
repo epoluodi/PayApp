@@ -33,7 +33,7 @@
 
 <!-- header 个人信息 结束 -->
 <a class="long_button" onclick="click1()">显示Toast</a>
-
+<a class="long_button" onclick="click16()">扫描</a>
 <a class="long_button" onclick="click2()">支付接口=签到</a>
 <a class="long_button" onclick="click3()">支付接口=消费</a>
 <a class="long_button" onclick="click4()">支付接口=消费撤销</a>
@@ -122,6 +122,13 @@
     }
     function click15(){
         ept.print.feedLine(1);
+    }
+    function click16(){
+        system.scan(
+            function(code){
+                alert(code);
+            }
+        );
     }
 </script>
 </html>

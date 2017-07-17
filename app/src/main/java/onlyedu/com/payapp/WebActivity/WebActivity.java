@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
+import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
@@ -15,12 +16,14 @@ import org.apache.cordova.CordovaWebView;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import onlyedu.com.payapp.MainActivity;
 import onlyedu.com.payapp.R;
 import onlyedu.com.payapp.Scan.ScanActivity;
 
 public class WebActivity extends AppCompatActivity implements CordovaInterface {
 
     private CordovaWebView cordovaWebView;
+    private CallbackContext callbackContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +38,20 @@ public class WebActivity extends AppCompatActivity implements CordovaInterface {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode ==ScanActivity.SCANRESULTREQUEST)
+        {
+            if (resultCode ==1)
+            {
 
+                String code =data.getExtras().getString("code");
+                if (callbackContext != null)
+                {
+                    callbackContext.success(code);
+                    callbackContext = null;
+                }
+            }
+            return;
+        }
         switch (resultCode)
         {
             case RESULT_OK:
@@ -47,6 +63,7 @@ public class WebActivity extends AppCompatActivity implements CordovaInterface {
                 }
 
                 break;
+
         }
         Log.i("onActivityResult 回调 " ,String.valueOf(requestCode));
 
@@ -68,6 +85,15 @@ public class WebActivity extends AppCompatActivity implements CordovaInterface {
 
     @Override
     public Object onMessage(String id, Object data) {
+
+        if (id.equals("scan"))
+        {
+            callbackContext = (CallbackContext) data;
+            Intent intent=new Intent(WebActivity.this, ScanActivity.class);
+            startActivityForResult(intent,ScanActivity.SCANRESULTREQUEST);
+
+        }
+
         return null;
     }
 

@@ -9,13 +9,16 @@
     <ImageView
         android:id="@+id/img"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_height="80dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:layout_marginTop="60dp"
-        android:background="@mipmap/ic_launcher" />
+        android:src="@mipmap/main_logo"
+        android:scaleType="centerInside" />
 
 
     <Button
+        android:id="@+id/btn1"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_below="@+id/img"
@@ -24,20 +27,19 @@
         android:background="@drawable/btn1_main_selector"
         android:text="合同扫码"
         android:textColor="@color/white"
-        android:textSize="20dp"
-        android:id="@+id/btn1"
-        />
+        android:textSize="20dp" />
+
     <Button
         android:id="@+id/btn2"
-        android:textSize="20dp"
-        android:textColor="@color/white"
-        android:text="扫码签到"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/btn2_main_selector"
-        android:layout_below="@+id/btn1"
         android:layout_width="140dp"
         android:layout_height="140dp"
+        android:layout_below="@+id/btn1"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/btn2_main_selector"
+        android:text="扫码签到"
+        android:textColor="@color/white"
+        android:textSize="20dp"
 
         />
 

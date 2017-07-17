@@ -13,6 +13,7 @@ import android.widget.Toast;
 import java.io.File;
 
 import onlyedu.com.payapp.Scan.ScanActivity;
+import onlyedu.com.payapp.WebActivity.WebActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -73,7 +74,8 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
 
             Toast.makeText(MainActivity.this,"暂时没有开放",Toast.LENGTH_SHORT).show();
-
+            Intent intent=new Intent(MainActivity.this, WebActivity.class);
+            startActivity(intent);
         }
     };
 

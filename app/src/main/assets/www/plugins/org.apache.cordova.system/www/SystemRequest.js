@@ -25,6 +25,11 @@ cordova.define("onlyedu.com.payapp.Plugin.SystemPlugin", function(require,export
            exec(null, null, "SystemPlugin", "toast", [jsonparams]);
         },
 
+        //扫描
+        scan: function(callback) {
+           exec(callback, null, "SystemPlugin", "scan", [null]);
+        },
+
 
     };
 

@@ -55,6 +55,16 @@ public class SystemPlugin extends CordovaPlugin {
 		}
 
 
+		if (action.equals("scan")) {
+			try
+			{
+				this.cordova.onMessage("scan", callbackContext);
+			}
+			catch (Exception e)
+			{e.printStackTrace();}
+			return true;
+		}
+
     	return true;
     }
 }
