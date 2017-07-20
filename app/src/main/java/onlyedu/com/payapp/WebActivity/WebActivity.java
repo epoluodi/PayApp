@@ -24,14 +24,16 @@ public class WebActivity extends AppCompatActivity implements CordovaInterface {
 
     private CordovaWebView cordovaWebView;
     private CallbackContext callbackContext;
+    String url;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
 
         cordovaWebView = (CordovaWebView)findViewById(R.id.cordovaWebView);
+        url = getIntent().getStringExtra("url");
 //        file:///android_asset/www/index.html
-        cordovaWebView.loadUrl("file:///android_asset/www/index.html");
+        cordovaWebView.loadUrl(url);
     }
 
 

@@ -1,13 +1,16 @@
 package onlyedu.com.payapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.File;
@@ -17,42 +20,50 @@ import onlyedu.com.payapp.WebActivity.WebActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btn1,btn2;
+    private Button btn1,btn2,btn3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btn1 = (Button)findViewById(R.id.btn1);
         btn2 = (Button)findViewById(R.id.btn2);
+        btn3 = (Button)findViewById(R.id.btn3);
 
 
         btn1.setOnClickListener(onClickListenerbtn1);
         btn2.setOnClickListener(onClickListenerbtn2);
+        btn3.setOnClickListener(onClickListenerbtn3);
+
+        LibConfig.context = getApplicationContext();
+        HttpUrl.host = LibConfig.getKeyShareVarForString("host");
 
     }
 
 
-    private void installAPK(Uri apk) {
+    View.OnClickListener onClickListenerbtn3 = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
 
-        // 通过Intent安装APK文件
-        if (apk ==null)
-        {
+            final EditText editText=new EditText(MainActivity.this);
 
-            Toast.makeText(MainActivity.this,"更新失败，请重新尝试",Toast.LENGTH_SHORT).show();
-            return;
+            AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+            builder.setTitle("输入测试服务地址");
+            builder.setView(editText);
+            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    LibConfig.setKeyShareVar("host",editText.getText().toString());
+                    HttpUrl.host = editText.getText().toString();
+                    dialogInterface.dismiss();
+                }
+            });
+            builder.setNeutralButton("取消",null);
+            AlertDialog alertDialog=builder.create();
+            alertDialog.show();
+
         }
-        Intent intents = new Intent();
-        intents.setAction("android.intent.action.VIEW");
-        intents.addCategory("android.intent.category.DEFAULT");
-        intents.setType("application/vnd.android.package-archive");
-        intents.setData(apk);
-        intents.setDataAndType(apk, "application/vnd.android.package-archive");
-        intents.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intents);
-        finish();
+    };
 
-
-    }
 
     /**
      * 扫码收款
@@ -91,6 +102,10 @@ public class MainActivity extends AppCompatActivity {
             {
                 String code =data.getExtras().getString("code");
                 Log.i("条码:" ,code);
+                HttpUrl.codeUrl = String.format(HttpUrl.codeUrlModel,HttpUrl.host,code);
+                Intent intent=new Intent(MainActivity.this,WebActivity.class);
+                intent.putExtra("url",HttpUrl.codeUrl);
+                startActivity(intent);
             }
         }
     }
