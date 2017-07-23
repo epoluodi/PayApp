@@ -21,7 +21,7 @@ public class SystemPlugin extends CordovaPlugin {
 	
 	private static final String TAG = "SystemPlugin";
 
-    private CallbackContext callbackContext = null;
+
 
 
 
@@ -58,13 +58,22 @@ public class SystemPlugin extends CordovaPlugin {
 		if (action.equals("scan")) {
 			try
 			{
-				this.cordova.onMessage("scan", callbackContext);
+				jsondata = args.getJSONObject(0);
+				this.cordova.onMessage("scan", this);
 			}
 			catch (Exception e)
 			{e.printStackTrace();}
 			return true;
 		}
-
+		if (action.equals("goback")) {
+			try
+			{
+				webView.goBack();
+			}
+			catch (Exception e)
+			{e.printStackTrace();}
+			return true;
+		}
     	return true;
     }
 }

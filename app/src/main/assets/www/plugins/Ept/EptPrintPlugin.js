@@ -11,8 +11,8 @@ cordova.define("onlyedu.com.payapp.Plugin.EPTPrintPlugin", function(require,expo
         },
 
         //注销
-        logout:function() {
-           exec(null, null, "EPTPrintPlugin", "logout", [null]);
+        printTick:function(arg,callback) {
+           exec(callback, null, "EPTPrintPlugin", "printTick", [arg]);
         },
 
     };

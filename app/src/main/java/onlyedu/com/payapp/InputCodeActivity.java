@@ -31,7 +31,7 @@ public class InputCodeActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                HttpUrl.codeUrl = String.format(HttpUrl.codeUrlModel,HttpUrl.host,input.getText().toString());
+                HttpUrl.codeUrl = String.format(HttpUrl.codeUrlModel2,HttpUrl.host,input.getText().toString());
                 Intent intent=new Intent(InputCodeActivity.this,WebActivity.class);
                 intent.putExtra("url",HttpUrl.codeUrl);
                 startActivity(intent);

@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
@@ -63,11 +64,13 @@ public class ScanActivity extends Activity implements Callback {
     private boolean vibrate;
     ImageView imageViewline = null;
     FrameLayout mainview;
-    private TextView textView;
+    private TextView textView,payamount;
     private Button btninputcode;
 
 
+    private Button btnpaycode;
 
+    private String htid= "";
     /**
      * 二维扫描窗口
      *
@@ -76,10 +79,33 @@ public class ScanActivity extends Activity implements Callback {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.scan_activity);
+
+        if (getIntent().getIntExtra("mode", 0) == 0) {
+            setContentView(R.layout.scan_activity);
+            btninputcode = (Button) findViewById(R.id.btninputcode);
+            btninputcode.setOnClickListener(onClickListenerinputcode);
+        }
+        else if (getIntent().getIntExtra("mode", 0) == 1) {
+            setContentView(R.layout.pay_scan_activity);
+            btnpaycode = (Button)findViewById(R.id.btnpay);
+            btnpaycode.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(ScanActivity.this,"付款吗",Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            });
+
+            htid = getIntent().getStringExtra("code");
+            payamount = (TextView)findViewById(R.id.payamount);
+            payamount.setText(String.format("金额:%1$s 元",getIntent().getStringExtra("amount")));
+
+
+        }
+
 
         mainview = (FrameLayout) findViewById(R.id.mainview);
-        btninputcode = (Button)findViewById(R.id.btninputcode);
+
         System.gc();//释放内存
         CameraManager.init(getApplication());
         CameraManager.get().setScantype(1);
@@ -89,7 +115,9 @@ public class ScanActivity extends Activity implements Callback {
         inactivityTimer = new InactivityTimer(this);
 
         viewfinderView.setOnScanLine(iScanLine);
-        btninputcode.setOnClickListener(onClickListenerinputcode);
+
+
+
 
     }
 
@@ -101,13 +129,10 @@ public class ScanActivity extends Activity implements Callback {
         @Override
         public void onClick(View view) {
 
-            Intent intent=new Intent(ScanActivity.this, InputCodeActivity.class);
+            Intent intent = new Intent(ScanActivity.this, InputCodeActivity.class);
             startActivity(intent);
         }
     };
-
-
-
 
 
     @Override
@@ -175,9 +200,8 @@ public class ScanActivity extends Activity implements Callback {
                         rect1.right - rect1.left,
                         50);
                 textView.setGravity(Gravity.CENTER);
-                layoutParams2.setMargins(rect1.left, rect1.bottom, rect1.right, rect1.bottom );
+                layoutParams2.setMargins(rect1.left, rect1.bottom, rect1.right, rect1.bottom);
                 mainview.addView(textView, layoutParams2);
-
 
 
             }

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         btn1 = (Button)findViewById(R.id.btn1);
         btn2 = (Button)findViewById(R.id.btn2);
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
 
             final EditText editText=new EditText(MainActivity.this);
-
+            editText.setText(HttpUrl.host);
             AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
             builder.setTitle("输入测试服务地址");
             builder.setView(editText);
@@ -72,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             Intent intent=new Intent(MainActivity.this, ScanActivity.class);
+            intent.putExtra("mode",0);
             startActivityForResult(intent,ScanActivity.SCANRESULTREQUEST);
 
         }
@@ -86,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
             Toast.makeText(MainActivity.this,"暂时没有开放",Toast.LENGTH_SHORT).show();
             Intent intent=new Intent(MainActivity.this, WebActivity.class);
+            intent.putExtra("url","http://192.168.1.156:8093/mobile/views/paySuccess.html?__hbt=1500718467914");//file:///android_asset/www/index.html
             startActivity(intent);
         }
     };

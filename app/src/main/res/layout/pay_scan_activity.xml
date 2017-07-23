@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainview"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+
+    <SurfaceView
+        android:id="@+id/preview_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center" />
+
+    <onlyedu.com.payapp.Scan.view.ViewfinderView
+        android:id="@+id/viewfinder_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+
+        android:background="@color/transparent" />
+
+
+    <RelativeLayout
+
+        android:id="@+id/r11"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/blackTransparent8"
+
+        >
+
+
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+
+            android:gravity="center_horizontal|center_vertical"
+            android:singleLine="true"
+            android:text="二维码/条形码"
+
+            android:textColor="@color/white"
+            android:textSize="24dp" />
+
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="金额:100元"
+        android:textSize="18dp"
+        android:paddingLeft="15dp"
+
+        android:textColor="@color/white"
+        android:layout_marginTop="60dp"
+        android:id="@+id/payamount"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="支付类型:支付宝/微信"
+        android:textSize="18dp"
+        android:paddingLeft="15dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="90dp"
+        />
+
+
+    <Button
+        android:id="@+id/btnpay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="付款码"
+        android:background="@null"
+        android:textSize="22dp"
+        android:drawableTop="@mipmap/paycode2"
+        android:layout_marginLeft="60dp"
+        android:layout_gravity="bottom|left"
+        android:layout_marginBottom="50dp"
+        android:textColor="@color/payunselect"
+        />
+
+    <Button
+        android:id="@+id/btnrecepay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="扫码收"
+        android:background="@null"
+        android:textSize="22dp"
+        android:drawableTop="@mipmap/recepay1"
+        android:layout_marginRight="60dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="50dp"
+        android:textColor="@color/white"
+        />
+
+</FrameLayout>

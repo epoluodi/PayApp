@@ -12,18 +12,21 @@ import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
+import org.json.JSONObject;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import onlyedu.com.payapp.MainActivity;
+import onlyedu.com.payapp.Plugin.SystemPlugin;
 import onlyedu.com.payapp.R;
 import onlyedu.com.payapp.Scan.ScanActivity;
 
 public class WebActivity extends AppCompatActivity implements CordovaInterface {
 
     private CordovaWebView cordovaWebView;
-    private CallbackContext callbackContext;
+    public CallbackContext callbackContext;
+    private SystemPlugin systemPlugin;
     String url;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,11 @@ public class WebActivity extends AppCompatActivity implements CordovaInterface {
         setContentView(R.layout.activity_web);
 
         cordovaWebView = (CordovaWebView)findViewById(R.id.cordovaWebView);
+        cordovaWebView.clearHistory();
+        cordovaWebView.clearCache(true);
+
         url = getIntent().getStringExtra("url");
+        Log.i("显示跳转url",url);
 //        file:///android_asset/www/index.html
         cordovaWebView.loadUrl(url);
     }
@@ -57,6 +64,31 @@ public class WebActivity extends AppCompatActivity implements CordovaInterface {
         switch (resultCode)
         {
             case RESULT_OK:
+                if (data !=null)
+                {
+                    if (callbackContext != null)
+                    {
+                        try {
+                            JSONObject jsonObject = new JSONObject();
+                            jsonObject.put("amount", data.getStringExtra("amount"));
+                            jsonObject.put("traceNo", data.getStringExtra("traceNo"));
+                            jsonObject.put("referenceNo", data.getStringExtra("referenceNo"));
+                            jsonObject.put("cardNo", data.getStringExtra("cardNo"));
+                            jsonObject.put("type", data.getStringExtra("type"));
+                            jsonObject.put("issue", data.getStringExtra("issue"));
+                            jsonObject.put("batchNo", data.getStringExtra("batchNo"));
+                            jsonObject.put("terminalId", data.getStringExtra("terminalId"));
+                            jsonObject.put("merchantId", data.getStringExtra("merchantId"));
+                            jsonObject.put("merchantName", data.getStringExtra("merchantName"));
+
+                            callbackContext.success(jsonObject);
+                            callbackContext = null;
+                        }
+                        catch (Exception e)
+                        {e.printStackTrace();}
+                    }
+                }
+
                 break;
             case RESULT_CANCELED:
                 String reason = data.getStringExtra("reason");
@@ -90,9 +122,18 @@ public class WebActivity extends AppCompatActivity implements CordovaInterface {
 
         if (id.equals("scan"))
         {
-            callbackContext = (CallbackContext) data;
-            Intent intent=new Intent(WebActivity.this, ScanActivity.class);
-            startActivityForResult(intent,ScanActivity.SCANRESULTREQUEST);
+            try {
+                systemPlugin = (SystemPlugin) data;
+                callbackContext = systemPlugin.callbackContext;
+                JSONObject jsonObject = (JSONObject) systemPlugin.jsondata;
+                Intent intent = new Intent(WebActivity.this, ScanActivity.class);
+                intent.putExtra("mode", 1);
+                intent.putExtra("code", jsonObject.getString("code"));
+                intent.putExtra("amount", jsonObject.getString("amount"));
+                startActivityForResult(intent, ScanActivity.SCANRESULTREQUEST);
+            }
+            catch (Exception e)
+            {e.printStackTrace();}
 
         }
 

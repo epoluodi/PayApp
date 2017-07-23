@@ -24,7 +24,7 @@
         android:layout_below="@+id/img"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
-        android:background="@drawable/btn1_main_selector"
+        android:background="@drawable/btn1_ripple"
         android:text="合同扫码"
         android:textColor="@color/white"
         android:textSize="20dp" />
@@ -36,7 +36,7 @@
         android:layout_below="@+id/btn1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
-        android:background="@drawable/btn2_main_selector"
+        android:background="@drawable/btn2_ripple"
         android:text="扫码签到"
         android:textColor="@color/white"
         android:textSize="20dp"

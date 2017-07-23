@@ -331,7 +331,7 @@
     <color name="listselect">#56ccc8</color>
     <color name="loginbackcolor">#faf8f9</color>
     <color name="bluebtn">#59b1f6</color>
-
+    <color name="payunselect">#B1B1B1</color>
     <color name="itemColor">#F5F5F5</color>
     <!-- 扫描使用-->
     <color name="viewfinder_frame">#ff000000</color>

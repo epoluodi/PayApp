@@ -51,7 +51,7 @@
 
 
 <a class="long_button" onclick="click15()">EPTPrint接口=进退纸</a>
-
+<a class="long_button" onclick="click17()">EPTPrint接口=小票</a>
 
 <script src="cordova.js" type="text/javascript"></script>
 
@@ -70,7 +70,7 @@
     }
 
     function click3(){
-        payService.consume('000000001000',function(v){
+        payService.consume('000000000010',function(v){
             alert(v);
         });
     }
@@ -124,7 +124,18 @@
         ept.print.feedLine(1);
     }
     function click16(){
-        system.scan(
+        system.scan({
+            code:'1',
+        },
+            function(code){
+                alert(code);
+            }
+        );
+    }
+    function click17(){
+        ept.print.printTick({
+            code:'1',
+        },
             function(code){
                 alert(code);
             }
