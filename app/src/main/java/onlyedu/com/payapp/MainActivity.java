@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
             Toast.makeText(MainActivity.this,"暂时没有开放",Toast.LENGTH_SHORT).show();
             Intent intent=new Intent(MainActivity.this, WebActivity.class);
-            intent.putExtra("url","http://192.168.1.156:8093/mobile/views/paySuccess.html?__hbt=1500718467914");//file:///android_asset/www/index.html
+            intent.putExtra("url","file:///android_asset/www/index.html");//file:///android_asset/www/index.html
             startActivity(intent);
         }
     };
@@ -106,9 +106,9 @@ public class MainActivity extends AppCompatActivity {
             {
                 String code =data.getExtras().getString("code");
                 Log.i("条码:" ,code);
-                HttpUrl.codeUrl = String.format(HttpUrl.codeUrlModel,HttpUrl.host,code);
+//                HttpUrl.codeUrl = String.format(HttpUrl.codeUrlModel,HttpUrl.host,code);
                 Intent intent=new Intent(MainActivity.this,WebActivity.class);
-                intent.putExtra("url",HttpUrl.codeUrl);
+                intent.putExtra("url",code);
                 startActivity(intent);
             }
         }

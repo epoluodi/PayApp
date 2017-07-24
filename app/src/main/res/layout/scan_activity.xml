@@ -74,6 +74,7 @@
         android:layout_gravity="center_horizontal|bottom"
         android:layout_marginBottom="50dp"
         android:textColor="@drawable/scan_input_selector"
+        android:visibility="invisible"
         />
 
 

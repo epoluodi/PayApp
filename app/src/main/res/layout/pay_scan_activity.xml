@@ -87,6 +87,7 @@
         android:layout_gravity="bottom|left"
         android:layout_marginBottom="50dp"
         android:textColor="@color/payunselect"
+        android:visibility="invisible"
         />
 
     <Button
@@ -101,6 +102,7 @@
         android:layout_gravity="bottom|right"
         android:layout_marginBottom="50dp"
         android:textColor="@color/white"
+        android:visibility="invisible"
         />
 
 </FrameLayout>
