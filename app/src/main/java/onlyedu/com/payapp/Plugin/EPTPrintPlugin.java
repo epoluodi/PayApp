@@ -136,7 +136,7 @@ public class EPTPrintPlugin extends CordovaPlugin {
         }
 
 
-        //签到
+        //现金收款
         if(action.equals("printCash"))
         {
 //            商户存根(MERCHANT COPY)/客户存根(CUSTOMER COPY)
@@ -146,6 +146,7 @@ public class EPTPrintPlugin extends CordovaPlugin {
 //            交易类型(TRANS TYPE)：现金(CASH)
 //            日期/时间(DATA/TIME)：2017/07/08 18:14:32
 //            交易金额(AMOUNT)：RMB 100.00
+//            合同编号(CONTRACT NO)：XFSSH01201708060004
 //            备注(REFERENCE)：
 //            客户签名(CUSTOMER SIGNATURE)：
             JSONObject jsonObject = args.getJSONObject(0);
@@ -154,37 +155,33 @@ public class EPTPrintPlugin extends CordovaPlugin {
                 Printer.Progress progress=new Printer.Progress() {
                     @Override
                     public void doPrint(Printer printer) throws Exception {
+                        printer.setGray(8);
                         Printer.Format format = new Printer.Format();
                         // Use this 5x7 dot and 1 times width, 2 times height
                         format.setAscSize(Printer.Format.ASC_DOT5x7);
                         format.setAscScale(Printer.Format.ASC_SC1x2);
                         printer.setFormat(format);
-                        printer.printText("          Landi Pay\n");
+                        printer.printMid("现金POS签购单\n");
                         format.setAscScale(Printer.Format.ASC_SC1x1);
                         printer.setFormat(format);
-//			printer.printImage(0, "/tmp/1.bmp");
-                        printer.printText("--Public utility bill payment receipt--\n");
+                        printer.printMid("-----客户存根(CUSTOMER COPY)-----\n");
                         printer.printText("\n");
-                        printer.printText("Transaction : Repayment\n");
-                        printer.printText("Credit Card No.: XXXX XXXX XXXX XXXX\n");
-                        printer.printText("Term No.: 2200306\n");
-                        printer.printText("Amount: RMB 100.00\n");
-                        printer.printText("Reference No.: 191017234668\n");
+                        printer.printText("商户名:上海昂立智立方教育培训有限公司\n");
+                        printer.printText("商户编号:102310082990540\n");
+                        printer.printText("操作员号: 01\n");
+                        printer.printText("交易类型: 现金\n");
+                        printer.printText("日期/时间: 2017/07/08 18:14:32\n");
+                        printer.printText("交易金额: RMB 100\n");
+                        printer.printText("合同编号: XFSSH01201708060004\n");
+                        printer.printText("备注: \n");
                         printer.printText("\n");
-                        printer.printText("---The Client Stub---\n");
-                        // CHS Text Format - 16x16 dot and 1 times width, 1 times height
-                        format.setHzScale(Printer.Format.HZ_SC1x1);
-                        format.setHzSize(Printer.Format.HZ_DOT16x16);
-                        printer.printText("---���������豸���޹�˾---\n");
-                        printer.printText("\n");
+                        printer.printMid("-----客户签名-----\n");
+                        printer.feedLine(3);
+//                        printer.printText("\n");
+//                        printer.printText("\n");
+//                        printer.printText("\n");
 
-                        printer.printBarCode("8799128883");
-
-                        printer.printQrCode(0, new QrCode("sdafsadf", QrCode.ECLEVEL_Q), 100);
-                        printer.printQrCode(Printer.Alignment.CENTER, new QrCode("landi", QrCode.ECLEVEL_Q), 124);
-                        printer.printQrCode(Printer.Alignment.RIGHT, new QrCode("landi", QrCode.ECLEVEL_Q), 124);
-                        printer.printText(Printer.Alignment.CENTER, "------landicorp------\n");
-                        printer.printText(Printer.Alignment.RIGHT, "www.landicorp.com\n");
+                        printer.printText(Printer.Alignment.CENTER, "www.angli.com\n");
 
                         printer.feedLine(3);
                     }
@@ -219,6 +216,92 @@ public class EPTPrintPlugin extends CordovaPlugin {
             return true;
         }
 
+        //支付宝微信
+        if(action.equals("printNet"))
+        {
+//            商户存根(MERCHANT COPY)/客户存根(CUSTOMER COPY)
+//            商户名(MERCHANT NAME)：上海昂立智立方教育培训有限公司
+//            商户编号(MERCHANT NO)：102310082990540
+//            终端号(TERMINAL NO)：64367042
+//            操作员号(OPERATOR NO)：01
+//            商户订单号(MERCHANT ORDER NO)：7895259818924844
+//            交易类型(TRANS TYPE)：支付宝付款(ALI PAY)/微信付款(WECHAT PAY)
+//            客户账号(CUSTOMER ACCOUNT NO )：912***@qq.com
+//                日期/时间(DATA/TIME)：2017/07/08 18:14:32
+//            交易金额(AMOUNT)：RMB 100.00
+//            合同编号(CONTRACT NO)：XFSSH01201708060004
+//            备注(REFERENCE)：
+//            客户签名(CUSTOMER SIGNATURE)：
+
+            JSONObject jsonObject = args.getJSONObject(0);
+            try {
+                DeviceService.login(cordova.getActivity().getApplicationContext());
+                Printer.Progress progress=new Printer.Progress() {
+                    @Override
+                    public void doPrint(Printer printer) throws Exception {
+                        printer.setGray(8);
+                        Printer.Format format = new Printer.Format();
+                        // Use this 5x7 dot and 1 times width, 2 times height
+                        format.setAscSize(Printer.Format.ASC_DOT5x7);
+                        format.setAscScale(Printer.Format.ASC_SC1x2);
+                        printer.setFormat(format);
+                        printer.printMid("无线支付POS签购单\n");
+                        format.setAscScale(Printer.Format.ASC_SC1x1);
+                        printer.setFormat(format);
+                        printer.printMid("-------客户存根-------\n");
+                        printer.printText("\n");
+                        printer.printText("商户名:上海昂立智立方教育培训有限公司\n");
+                        printer.printText("商户编号:102310082990540\n");
+                        printer.printText("终端号:64367042\n");
+                        printer.printText("操作员号: 01\n");
+                        printer.printText("商户订单号: 7895259818924844\n");
+                        printer.printText("交易类型: 支付宝付款\n");
+                        printer.printText("客户账号: 912***@qq.com\n");
+                        printer.printText("日期/时间: 2017/07/08 18:14:32\n");
+                        printer.printText("交易金额: RMB 100\n");
+                        printer.printText("合同编号: XFSSH01201708060004\n");
+                        printer.printText("备注: \n");
+                        printer.printText("\n");
+                        printer.printMid("-----客户签名-----\n");
+                        printer.feedLine(3);
+//                        printer.printText("\n");
+//                        printer.printText("\n");
+//                        printer.printText("\n");
+
+                        printer.printText(Printer.Alignment.CENTER, "www.angli.com\n");
+
+                        printer.feedLine(3);
+                    }
+
+                    @Override
+                    public void onFinish(int i) {
+                        if(i == Printer.ERROR_NONE) {
+                            EPTPrintPlugin.this.callbackContext.success(1);
+                        }
+                        /**
+                         * Has some error. Here is display it, but you may want to hanle
+                         * the error such as ERROR_OVERHEAT��ERROR_BUSY��ERROR_PAPERENDED
+                         * to start again in the right time later.
+                         */
+                        else {
+                            EPTPrintPlugin.this.callbackContext.success("PRINT ERR - "+getErrorDescription(i));
+                        }
+                    }
+
+                    @Override
+                    public void onCrash() {
+                        EPTPrintPlugin.this.callbackContext.success("-1");
+                    }
+                };
+                progress.start();
+
+            }catch (Exception e)
+            {e.printStackTrace();
+                Toast.makeText(cordova.getActivity(),"请先登录登录，错误信息:" +e.getMessage(),Toast.LENGTH_SHORT).show();
+            }
+
+            return true;
+        }
 
 
         return super.execute(action, args, callbackContext);
