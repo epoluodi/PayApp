@@ -12,7 +12,10 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.landicorp.android.eptapi.DeviceService;
 
 import java.io.File;
 
@@ -21,20 +24,21 @@ import onlyedu.com.payapp.WebActivity.WebActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btn1,btn2,btn3;
+    private RelativeLayout btn1,btn2,btn3,btn4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        btn1 = (Button)findViewById(R.id.btn1);
-        btn2 = (Button)findViewById(R.id.btn2);
-        btn3 = (Button)findViewById(R.id.btn3);
-
+        btn1 = (RelativeLayout)findViewById(R.id.btn1);
+        btn2 = (RelativeLayout)findViewById(R.id.btn2);
+        btn3 = (RelativeLayout)findViewById(R.id.btn3);
+        btn4 = (RelativeLayout)findViewById(R.id.btn4);
 
         btn1.setOnClickListener(onClickListenerbtn1);
         btn2.setOnClickListener(onClickListenerbtn2);
         btn3.setOnClickListener(onClickListenerbtn3);
+        btn4.setOnClickListener(onClickListenerbtn4);
 
         LibConfig.context = getApplicationContext();
         HttpUrl.host = LibConfig.getKeyShareVarForString("host");
@@ -42,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    View.OnClickListener onClickListenerbtn3 = new View.OnClickListener() {
+    View.OnClickListener onClickListenerbtn4 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 
@@ -84,6 +88,24 @@ public class MainActivity extends AppCompatActivity {
      * 扫码签到
      */
     View.OnClickListener onClickListenerbtn2 = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            try {
+                DeviceService.login(getApplicationContext());
+                Toast.makeText(MainActivity.this,"签到成功",Toast.LENGTH_SHORT).show();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                Toast.makeText(MainActivity.this,"签到失败",Toast.LENGTH_SHORT).show();
+            }
+
+        }
+    };
+
+
+    View.OnClickListener onClickListenerbtn3 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 

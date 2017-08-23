@@ -1,61 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="onlyedu.com.payapp.MainActivity">
 
-    <ImageView
-        android:id="@+id/img"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="60dp"
-        android:scaleType="centerInside"
-        android:src="@mipmap/main_logo" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:layout_weight="1"
+        android:background="#eceaed">
 
 
-    <Button
-        android:id="@+id/btn1"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:layout_below="@+id/img"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/btn1_ripple"
-        android:text="合同扫码"
-        android:textColor="@color/white"
-        android:textSize="20dp" />
-
-    <Button
-        android:id="@+id/btn2"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:layout_below="@+id/btn1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/btn2_ripple"
-        android:text="扫码签到"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-
-        />
-
-    <Button
-        android:id="@+id/btn3"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-
-        android:layout_alignParentBottom="true"
-
-        android:background="@drawable/btn2_main_selector"
-        android:text="设置"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-
-        />
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="175dp"
+            android:layout_height="46dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/onlyedu" />
+    </RelativeLayout>
 
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/btn1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="2.5dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn1_ripple">
+
+            <ImageView
+                android:id="@+id/img1"
+                android:layout_width="60dp"
+
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/scan_main" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                android:text="合同扫码"
+                android:textColor="@color/white"
+                android:textSize="14dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+
+            android:id="@+id/btn2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2.5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn2_ripple">
+
+            <ImageView
+                android:id="@+id/img2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+
+                android:src="@mipmap/sign_main" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                android:text="签到"
+                android:textColor="@color/white"
+                android:textSize="14dp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+
+            android:id="@+id/btn3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_weight="1"
+            android:background="@drawable/btn3_ripple">
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/btn4"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="2.5dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn4_ripple">
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+
+            android:id="@+id/btn5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2.5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn5_ripple">
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -26,6 +26,8 @@ public class EPTPrintPlugin extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
 
+
+
         this.callbackContext = callbackContext;
         //签到
         if(action.equals("feedLine"))
@@ -189,7 +191,7 @@ public class EPTPrintPlugin extends CordovaPlugin {
                     @Override
                     public void onFinish(int i) {
                         if(i == Printer.ERROR_NONE) {
-                            EPTPrintPlugin.this.callbackContext.success(1);
+                            EPTPrintPlugin.this.callbackContext.success("1");
                         }
                         /**
                          * Has some error. Here is display it, but you may want to hanle
@@ -197,7 +199,7 @@ public class EPTPrintPlugin extends CordovaPlugin {
                          * to start again in the right time later.
                          */
                         else {
-                            EPTPrintPlugin.this.callbackContext.success("PRINT ERR - "+getErrorDescription(i));
+                            EPTPrintPlugin.this.callbackContext.success("-1");
                         }
                     }
 
@@ -276,7 +278,7 @@ public class EPTPrintPlugin extends CordovaPlugin {
                     @Override
                     public void onFinish(int i) {
                         if(i == Printer.ERROR_NONE) {
-                            EPTPrintPlugin.this.callbackContext.success(1);
+                            EPTPrintPlugin.this.callbackContext.success("1");
                         }
                         /**
                          * Has some error. Here is display it, but you may want to hanle
@@ -284,7 +286,7 @@ public class EPTPrintPlugin extends CordovaPlugin {
                          * to start again in the right time later.
                          */
                         else {
-                            EPTPrintPlugin.this.callbackContext.success("PRINT ERR - "+getErrorDescription(i));
+                            EPTPrintPlugin.this.callbackContext.success("-1");
                         }
                     }
 

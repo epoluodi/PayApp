@@ -10,9 +10,14 @@ cordova.define("onlyedu.com.payapp.Plugin.EPTPrintPlugin", function(require,expo
            exec(null, null, "EPTPrintPlugin", "feedLine", [line]);
         },
 
-        //注销
-        printTick:function(arg,callback) {
-           exec(callback, null, "EPTPrintPlugin", "printTick", [arg]);
+        //微信，支付宝打印
+        printNet:function(arg,callback) {
+           exec(callback, null, "EPTPrintPlugin", "printNet", [arg]);
+        },
+
+        //现金打印
+        printCash:function(arg,callback) {
+           exec(callback, null, "EPTPrintPlugin", "printCash", [arg]);
         },
 
     };
