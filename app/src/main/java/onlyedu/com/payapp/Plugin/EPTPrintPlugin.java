@@ -20,22 +20,17 @@ public class EPTPrintPlugin extends CordovaPlugin {
     private static final String TAG = "EPTPrintPlugin";
 
 
-
-
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
 
-
-
         this.callbackContext = callbackContext;
         //签到
-        if(action.equals("feedLine"))
-        {
+        if (action.equals("feedLine")) {
             final int line = args.getInt(0);
             try {
 
-                Printer.Progress progress=new Printer.Progress() {
+                Printer.Progress progress = new Printer.Progress() {
                     @Override
                     public void doPrint(Printer printer) throws Exception {
                         Printer.getInstance().feedLine(line);
@@ -53,9 +48,9 @@ public class EPTPrintPlugin extends CordovaPlugin {
                 };
                 progress.start();
 
-            }catch (Exception e)
-            {e.printStackTrace();
-                Toast.makeText(cordova.getActivity(),"请先登录登录，错误信息:" +e.getMessage(),Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(cordova.getActivity(), "请先登录登录，错误信息:" + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
 
             return true;
@@ -63,13 +58,12 @@ public class EPTPrintPlugin extends CordovaPlugin {
 
 
         //签到
-        if(action.equals("printTick"))
-        {
+        if (action.equals("printTick")) {
 
             JSONObject jsonObject = args.getJSONObject(0);
             try {
                 DeviceService.login(cordova.getActivity().getApplicationContext());
-                Printer.Progress progress=new Printer.Progress() {
+                Printer.Progress progress = new Printer.Progress() {
                     @Override
                     public void doPrint(Printer printer) throws Exception {
                         Printer.Format format = new Printer.Format();
@@ -109,7 +103,7 @@ public class EPTPrintPlugin extends CordovaPlugin {
 
                     @Override
                     public void onFinish(int i) {
-                        if(i == Printer.ERROR_NONE) {
+                        if (i == Printer.ERROR_NONE) {
                             EPTPrintPlugin.this.callbackContext.success(1);
                         }
                         /**
@@ -118,7 +112,7 @@ public class EPTPrintPlugin extends CordovaPlugin {
                          * to start again in the right time later.
                          */
                         else {
-                            EPTPrintPlugin.this.callbackContext.success("PRINT ERR - "+getErrorDescription(i));
+                            EPTPrintPlugin.this.callbackContext.success("PRINT ERR - " + getErrorDescription(i));
                         }
                     }
 
@@ -129,9 +123,9 @@ public class EPTPrintPlugin extends CordovaPlugin {
                 };
                 progress.start();
 
-            }catch (Exception e)
-            {e.printStackTrace();
-                Toast.makeText(cordova.getActivity(),"请先登录登录，错误信息:" +e.getMessage(),Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(cordova.getActivity(), "请先登录登录，错误信息:" + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
 
             return true;
@@ -139,8 +133,7 @@ public class EPTPrintPlugin extends CordovaPlugin {
 
 
         //现金收款
-        if(action.equals("printCash"))
-        {
+        if (action.equals("printCash")) {
 //            商户存根(MERCHANT COPY)/客户存根(CUSTOMER COPY)
 //            商户名(MERCHANT NAME)：上海昂立智立方教育培训有限公司
 //            商户编号(MERCHANT NO)：102310082990540
@@ -151,46 +144,55 @@ public class EPTPrintPlugin extends CordovaPlugin {
 //            合同编号(CONTRACT NO)：XFSSH01201708060004
 //            备注(REFERENCE)：
 //            客户签名(CUSTOMER SIGNATURE)：
-            JSONObject jsonObject = args.getJSONObject(0);
+            final JSONObject jsonObject = args.getJSONObject(0);
             try {
                 DeviceService.login(cordova.getActivity().getApplicationContext());
-                Printer.Progress progress=new Printer.Progress() {
+                Printer.Progress progress = new Printer.Progress() {
                     @Override
                     public void doPrint(Printer printer) throws Exception {
                         printer.setGray(8);
                         Printer.Format format = new Printer.Format();
                         // Use this 5x7 dot and 1 times width, 2 times height
                         format.setAscSize(Printer.Format.ASC_DOT5x7);
-                        format.setAscScale(Printer.Format.ASC_SC1x2);
+                        format.setAscScale(Printer.Format.ASC_SC1x1);
                         printer.setFormat(format);
                         printer.printMid("现金POS签购单\n");
                         format.setAscScale(Printer.Format.ASC_SC1x1);
                         printer.setFormat(format);
-                        printer.printMid("-----客户存根(CUSTOMER COPY)-----\n");
+                        if (jsonObject.getInt("mode") == 1)
+                            printer.printMid("-----商户存根(MERCHANT COPY)-----\n");
+                        if (jsonObject.getInt("mode") == 2)
+                            printer.printMid("-----客户存根(CUSTOMER COPY)-----\n");
                         printer.printText("\n");
-                        printer.printText("商户名:上海昂立智立方教育培训有限公司\n");
-                        printer.printText("商户编号:102310082990540\n");
-                        printer.printText("操作员号: 01\n");
-                        printer.printText("交易类型: 现金\n");
-                        printer.printText("日期/时间: 2017/07/08 18:14:32\n");
-                        printer.printText("交易金额: RMB 100\n");
-                        printer.printText("合同编号: XFSSH01201708060004\n");
-                        printer.printText("备注: \n");
+                        printer.printText("商户名(MERCHANT NAME)\n");
+                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("merchantName") + "\n");
+                        printer.printText("商户编号(MERCHANT NO)\n");
+                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("merchantNo") + "\n");
+                        printer.printText("操作员号(OPERATOR NO)\n");
+                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("operatorNo") + "\n");
+                        printer.printText("交易类型(TRANS TYPE)\n");
+                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("transType") + "\n");
+                        printer.printText("日期/时间(DATA/TIME)\n");
+                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("dateTime") + "\n");
+                        printer.printText("交易金额(AMOUNT)\n");
+                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("amount") + "\n");
+                        printer.printText("合同编号(CONTRACT NO)\n");
+                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("contractNo") + "\n");
+                        printer.printText("备注(REFERENCE)\n");
+                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("reference") + "\n");
                         printer.printText("\n");
-                        printer.printMid("-----客户签名-----\n");
-                        printer.feedLine(3);
-//                        printer.printText("\n");
-//                        printer.printText("\n");
-//                        printer.printText("\n");
-
+                        printer.printText("\n");
+                        printer.printMid("-----客户签名(CUSTOMER SIGNATURE)-----\n");
+                        printer.printText("\n");
+                        printer.printText("\n");
+                        printer.printText("\n");
                         printer.printText(Printer.Alignment.CENTER, "www.angli.com\n");
-
                         printer.feedLine(3);
                     }
 
                     @Override
                     public void onFinish(int i) {
-                        if(i == Printer.ERROR_NONE) {
+                        if (i == Printer.ERROR_NONE) {
                             EPTPrintPlugin.this.callbackContext.success("1");
                         }
                         /**
@@ -210,17 +212,16 @@ public class EPTPrintPlugin extends CordovaPlugin {
                 };
                 progress.start();
 
-            }catch (Exception e)
-            {e.printStackTrace();
-                Toast.makeText(cordova.getActivity(),"请先登录登录，错误信息:" +e.getMessage(),Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(cordova.getActivity(), "请先登录登录，错误信息:" + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
 
             return true;
         }
 
         //支付宝微信
-        if(action.equals("printNet"))
-        {
+        if (action.equals("printNet")) {
 //            商户存根(MERCHANT COPY)/客户存根(CUSTOMER COPY)
 //            商户名(MERCHANT NAME)：上海昂立智立方教育培训有限公司
 //            商户编号(MERCHANT NO)：102310082990540
@@ -235,40 +236,54 @@ public class EPTPrintPlugin extends CordovaPlugin {
 //            备注(REFERENCE)：
 //            客户签名(CUSTOMER SIGNATURE)：
 
-            JSONObject jsonObject = args.getJSONObject(0);
+            final JSONObject jsonObject = args.getJSONObject(0);
             try {
                 DeviceService.login(cordova.getActivity().getApplicationContext());
-                Printer.Progress progress=new Printer.Progress() {
+                Printer.Progress progress = new Printer.Progress() {
                     @Override
                     public void doPrint(Printer printer) throws Exception {
                         printer.setGray(8);
                         Printer.Format format = new Printer.Format();
                         // Use this 5x7 dot and 1 times width, 2 times height
                         format.setAscSize(Printer.Format.ASC_DOT5x7);
-                        format.setAscScale(Printer.Format.ASC_SC1x2);
-                        printer.setFormat(format);
-                        printer.printMid("无线支付POS签购单\n");
                         format.setAscScale(Printer.Format.ASC_SC1x1);
                         printer.setFormat(format);
-                        printer.printMid("-------客户存根-------\n");
+                        printer.printMid("收钱吧POS签购单\n");
+                        format.setAscScale(Printer.Format.ASC_SC1x1);
+                        printer.setFormat(format);
+                        if (jsonObject.getInt("mode") == 1)
+                            printer.printMid("-----商户存根(MERCHANT COPY)-----\n");
+                        if (jsonObject.getInt("mode") == 2)
+                            printer.printMid("-----客户存根(CUSTOMER COPY)-----\n");
                         printer.printText("\n");
-                        printer.printText("商户名:上海昂立智立方教育培训有限公司\n");
-                        printer.printText("商户编号:102310082990540\n");
-                        printer.printText("终端号:64367042\n");
-                        printer.printText("操作员号: 01\n");
-                        printer.printText("商户订单号: 7895259818924844\n");
-                        printer.printText("交易类型: 支付宝付款\n");
-                        printer.printText("客户账号: 912***@qq.com\n");
-                        printer.printText("日期/时间: 2017/07/08 18:14:32\n");
-                        printer.printText("交易金额: RMB 100\n");
-                        printer.printText("合同编号: XFSSH01201708060004\n");
-                        printer.printText("备注: \n");
+                        printer.printText("商户名(MERCHANT NAME)\n");
+                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("merchantName") + "\n");
+                        printer.printText("商户编号(MERCHANT NO)\n");
+                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("merchantNo") + "\n");
+                        printer.printText("终端号(TERMINAL NO)\n");
+                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("terminalNo") + "\n");
+                        printer.printText("操作员号(OPERATOR NO)\n");
+                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("operatorNo") + "\n");
+                        printer.printText("商户订单号(MERCHANT ORDER NO)\n");
+                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("merchantOrderNo") + "\n");
+                        printer.printText("交易类型(TRANS TYPE)\n");
+                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("transType") + "\n");
+                        printer.printText("客户账号(CUSTOMER ACCOUNT NO )\n");
+                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("customerAccountNo") + "\n");
+                        printer.printText("日期/时间(DATA/TIME)\n");
+                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("dateTime") + "\n");
+                        printer.printText("交易金额(AMOUNT)\n");
+                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("amount") + "\n");
+                        printer.printText("合同编号(CONTRACT NO)\n");
+                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("contractNo") + "\n");
+                        printer.printText("备注(REFERENCE)\n");
+                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("reference") + "\n");
                         printer.printText("\n");
-                        printer.printMid("-----客户签名-----\n");
-                        printer.feedLine(3);
-//                        printer.printText("\n");
-//                        printer.printText("\n");
-//                        printer.printText("\n");
+                        printer.printText("\n");
+                        printer.printMid("-----客户签名(CUSTOMER SIGNATURE)-----\n");
+                        printer.printText("\n");
+                        printer.printText("\n");
+                        printer.printText("\n");
 
                         printer.printText(Printer.Alignment.CENTER, "www.angli.com\n");
 
@@ -277,7 +292,7 @@ public class EPTPrintPlugin extends CordovaPlugin {
 
                     @Override
                     public void onFinish(int i) {
-                        if(i == Printer.ERROR_NONE) {
+                        if (i == Printer.ERROR_NONE) {
                             EPTPrintPlugin.this.callbackContext.success("1");
                         }
                         /**
@@ -297,9 +312,9 @@ public class EPTPrintPlugin extends CordovaPlugin {
                 };
                 progress.start();
 
-            }catch (Exception e)
-            {e.printStackTrace();
-                Toast.makeText(cordova.getActivity(),"请先登录登录，错误信息:" +e.getMessage(),Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(cordova.getActivity(), "请先登录登录，错误信息:" + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
 
             return true;
@@ -310,25 +325,40 @@ public class EPTPrintPlugin extends CordovaPlugin {
     }
 
 
-    public String getErrorDescription(int code){
-        switch(code) {
-            case Printer.ERROR_PAPERENDED: return "Paper-out, the operation is invalid this time";
-            case Printer.ERROR_HARDERR: return "Hardware fault, can not find HP signal";
-            case Printer.ERROR_OVERHEAT: return "Overheat";
-            case Printer.ERROR_BUFOVERFLOW: return "The operation buffer mode position is out of range";
-            case Printer.ERROR_LOWVOL: return "Low voltage protect";
-            case Printer.ERROR_PAPERENDING: return "Paper-out, permit the latter operation";
-            case Printer.ERROR_MOTORERR: return "The printer core fault (too fast or too slow)";
-            case Printer.ERROR_PENOFOUND: return "Automatic positioning did not find the alignment position, the paper back to its original position";
-            case Printer.ERROR_PAPERJAM: return "paper got jammed";
-            case Printer.ERROR_NOBM: return "Black mark not found";
-            case Printer.ERROR_BUSY: return "The printer is busy";
-            case Printer.ERROR_BMBLACK: return "Black label detection to black signal";
-            case Printer.ERROR_WORKON: return "The printer power is open";
-            case Printer.ERROR_LIFTHEAD: return "Printer head lift";
-            case Printer.ERROR_LOWTEMP: return "Low temperature protect";
+    public String getErrorDescription(int code) {
+        switch (code) {
+            case Printer.ERROR_PAPERENDED:
+                return "Paper-out, the operation is invalid this time";
+            case Printer.ERROR_HARDERR:
+                return "Hardware fault, can not find HP signal";
+            case Printer.ERROR_OVERHEAT:
+                return "Overheat";
+            case Printer.ERROR_BUFOVERFLOW:
+                return "The operation buffer mode position is out of range";
+            case Printer.ERROR_LOWVOL:
+                return "Low voltage protect";
+            case Printer.ERROR_PAPERENDING:
+                return "Paper-out, permit the latter operation";
+            case Printer.ERROR_MOTORERR:
+                return "The printer core fault (too fast or too slow)";
+            case Printer.ERROR_PENOFOUND:
+                return "Automatic positioning did not find the alignment position, the paper back to its original position";
+            case Printer.ERROR_PAPERJAM:
+                return "paper got jammed";
+            case Printer.ERROR_NOBM:
+                return "Black mark not found";
+            case Printer.ERROR_BUSY:
+                return "The printer is busy";
+            case Printer.ERROR_BMBLACK:
+                return "Black label detection to black signal";
+            case Printer.ERROR_WORKON:
+                return "The printer power is open";
+            case Printer.ERROR_LIFTHEAD:
+                return "Printer head lift";
+            case Printer.ERROR_LOWTEMP:
+                return "Low temperature protect";
         }
-        return "unknown error ("+code+")";
+        return "unknown error (" + code + ")";
     }
 
 

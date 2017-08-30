@@ -14,6 +14,8 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -80,6 +82,11 @@ public class WebActivity extends AppCompatActivity implements CordovaInterface {
                             jsonObject.put("terminalId", data.getStringExtra("terminalId"));
                             jsonObject.put("merchantId", data.getStringExtra("merchantId"));
                             jsonObject.put("merchantName", data.getStringExtra("merchantName"));
+
+                            //交易时间
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                            String colseTime = simpleDateFormat.format(new Date());
+                            jsonObject.put("colseTime", colseTime);
 
                             callbackContext.success(jsonObject);
                             callbackContext = null;
