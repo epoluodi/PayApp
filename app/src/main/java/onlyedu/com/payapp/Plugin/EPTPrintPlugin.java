@@ -153,11 +153,14 @@ public class EPTPrintPlugin extends CordovaPlugin {
                         printer.setGray(8);
                         Printer.Format format = new Printer.Format();
                         // Use this 5x7 dot and 1 times width, 2 times height
-                        format.setAscSize(Printer.Format.ASC_DOT5x7);
-                        format.setAscScale(Printer.Format.ASC_SC1x1);
+                        format.setAscScale(Printer.Format.ASC_SC2x3);
+                        format.setHzScale(Printer.Format.HZ_SC2x3);
                         printer.setFormat(format);
                         printer.printMid("现金POS签购单\n");
                         format.setAscScale(Printer.Format.ASC_SC1x1);
+                        format.setHzScale(Printer.Format.HZ_SC1x2);
+                        printer.printText("\n");
+
                         printer.setFormat(format);
                         if (jsonObject.getInt("mode") == 1)
                             printer.printMid("-----商户存根(MERCHANT COPY)-----\n");
@@ -165,28 +168,32 @@ public class EPTPrintPlugin extends CordovaPlugin {
                             printer.printMid("-----客户存根(CUSTOMER COPY)-----\n");
                         printer.printText("\n");
                         printer.printText("商户名(MERCHANT NAME)\n");
-                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("merchantName") + "\n");
+                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("merchantName") + "\n");
                         printer.printText("商户编号(MERCHANT NO)\n");
-                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("merchantNo") + "\n");
+                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("merchantNo") + "\n");
                         printer.printText("操作员号(OPERATOR NO)\n");
-                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("operatorNo") + "\n");
+                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("operatorNo") + "\n");
                         printer.printText("交易类型(TRANS TYPE)\n");
-                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("transType") + "\n");
+                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("transType") + "\n");
                         printer.printText("日期/时间(DATA/TIME)\n");
-                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("dateTime") + "\n");
+                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("dateTime") + "\n");
                         printer.printText("交易金额(AMOUNT)\n");
-                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("amount") + "\n");
+                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("amount") + "\n");
                         printer.printText("合同编号(CONTRACT NO)\n");
-                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("contractNo") + "\n");
+                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("contractNo") + "\n");
                         printer.printText("备注(REFERENCE)\n");
-                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("reference") + "\n");
+                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("reference") + "\n");
                         printer.printText("\n");
                         printer.printText("\n");
-                        printer.printMid("-----客户签名(CUSTOMER SIGNATURE)-----\n");
+                        printer.printMid("--客户签名(CUSTOMER SIGNATURE)--\n");
+                        printer.printText("\n");
+                        printer.printText("\n");
                         printer.printText("\n");
                         printer.printText("\n");
                         printer.printText("\n");
                         printer.printText(Printer.Alignment.CENTER, "www.angli.com\n");
+                        printer.printText("\n");
+                        printer.printText("\n");
                         printer.feedLine(3);
                     }
 
@@ -245,11 +252,15 @@ public class EPTPrintPlugin extends CordovaPlugin {
                         printer.setGray(8);
                         Printer.Format format = new Printer.Format();
                         // Use this 5x7 dot and 1 times width, 2 times height
-                        format.setAscSize(Printer.Format.ASC_DOT5x7);
-                        format.setAscScale(Printer.Format.ASC_SC1x1);
+
+                        format.setAscScale(Printer.Format.ASC_SC2x3);
+                        format.setHzScale(Printer.Format.HZ_SC2x3);
                         printer.setFormat(format);
                         printer.printMid("收钱吧POS签购单\n");
+
                         format.setAscScale(Printer.Format.ASC_SC1x1);
+                        format.setHzScale(Printer.Format.HZ_SC1x2);
+                        printer.printText("\n");
                         printer.setFormat(format);
                         if (jsonObject.getInt("mode") == 1)
                             printer.printMid("-----商户存根(MERCHANT COPY)-----\n");
@@ -257,36 +268,38 @@ public class EPTPrintPlugin extends CordovaPlugin {
                             printer.printMid("-----客户存根(CUSTOMER COPY)-----\n");
                         printer.printText("\n");
                         printer.printText("商户名(MERCHANT NAME)\n");
-                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("merchantName") + "\n");
+                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("merchantName") + "\n");
                         printer.printText("商户编号(MERCHANT NO)\n");
-                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("merchantNo") + "\n");
+                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("merchantNo") + "\n");
                         printer.printText("终端号(TERMINAL NO)\n");
-                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("terminalNo") + "\n");
+                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("terminalNo") + "\n");
                         printer.printText("操作员号(OPERATOR NO)\n");
-                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("operatorNo") + "\n");
+                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("operatorNo") + "\n");
                         printer.printText("商户订单号(MERCHANT ORDER NO)\n");
-                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("merchantOrderNo") + "\n");
+                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("merchantOrderNo") + "\n");
                         printer.printText("交易类型(TRANS TYPE)\n");
-                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("transType") + "\n");
+                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("transType") + "\n");
                         printer.printText("客户账号(CUSTOMER ACCOUNT NO )\n");
-                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("customerAccountNo") + "\n");
+                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("customerAccountNo") + "\n");
                         printer.printText("日期/时间(DATA/TIME)\n");
-                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("dateTime") + "\n");
+                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("dateTime") + "\n");
                         printer.printText("交易金额(AMOUNT)\n");
-                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("amount") + "\n");
+                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("amount") + "\n");
                         printer.printText("合同编号(CONTRACT NO)\n");
-                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("contractNo") + "\n");
+                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("contractNo") + "\n");
                         printer.printText("备注(REFERENCE)\n");
-                        printer.printText(Printer.Alignment.RIGHT, jsonObject.getString("reference") + "\n");
+                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("reference") + "\n");
                         printer.printText("\n");
                         printer.printText("\n");
-                        printer.printMid("-----客户签名(CUSTOMER SIGNATURE)-----\n");
+                        printer.printMid("--客户签名(CUSTOMER SIGNATURE)--\n");
                         printer.printText("\n");
                         printer.printText("\n");
                         printer.printText("\n");
-
+                        printer.printText("\n");
+                        printer.printText("\n");
                         printer.printText(Printer.Alignment.CENTER, "www.angli.com\n");
-
+                        printer.printText("\n");
+                        printer.printText("\n");
                         printer.feedLine(3);
                     }
 
