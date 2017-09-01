@@ -20,6 +20,10 @@ cordova.define("onlyedu.com.payapp.Plugin.EPTPrintPlugin", function(require,expo
            exec(callback, null, "EPTPrintPlugin", "printCash", [arg]);
         },
 
+       //网银转账打印
+        printTrans:function(arg,callback) {
+           exec(callback, null, "EPTPrintPlugin", "printTrans", [arg]);
+        },
     };
 
 });
