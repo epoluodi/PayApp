@@ -232,7 +232,7 @@ public class EPTPrintPlugin extends CordovaPlugin {
                          * to start again in the right time later.
                          */
                         else {
-                            EPTPrintPlugin.this.callbackContext.success("-1");
+                            EPTPrintPlugin.this.callbackContext.success(getErrorDescription(i));
                         }
                     }
 
@@ -351,7 +351,7 @@ public class EPTPrintPlugin extends CordovaPlugin {
                          * to start again in the right time later.
                          */
                         else {
-                            EPTPrintPlugin.this.callbackContext.success("-1");
+                            EPTPrintPlugin.this.callbackContext.success(getErrorDescription(i));
                         }
                     }
 
@@ -482,7 +482,7 @@ public class EPTPrintPlugin extends CordovaPlugin {
                          * to start again in the right time later.
                          */
                         else {
-                            EPTPrintPlugin.this.callbackContext.success("-1");
+                            EPTPrintPlugin.this.callbackContext.success(getErrorDescription(i));
                         }
                     }
 
