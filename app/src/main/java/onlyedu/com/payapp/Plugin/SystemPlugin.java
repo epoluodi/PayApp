@@ -74,6 +74,15 @@ public class SystemPlugin extends CordovaPlugin {
 			{e.printStackTrace();}
 			return true;
 		}
+		if (action.equals("closeReturn")) {
+			try
+			{
+				this.cordova.onMessage("closeReturn", this);
+			}
+			catch (Exception e)
+			{e.printStackTrace();}
+			return true;
+		}
     	return true;
     }
 }

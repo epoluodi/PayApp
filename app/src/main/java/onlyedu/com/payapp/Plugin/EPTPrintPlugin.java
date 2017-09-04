@@ -215,7 +215,7 @@ public class EPTPrintPlugin extends CordovaPlugin {
                         printer.printText("\n");
                         printer.printText("\n");
                         printer.printText("\n");
-                        printer.printText(Printer.Alignment.CENTER, "www.anlyedu.com\n");
+                        printer.printText(Printer.Alignment.CENTER, "www.onlyedu.com\n");
                         printer.printText("\n");
                         printer.printText("\n");
                         printer.feedLine(3);
@@ -334,7 +334,7 @@ public class EPTPrintPlugin extends CordovaPlugin {
                         printer.printText("\n");
                         printer.printText("\n");
                         printer.printText("\n");
-                        printer.printText(Printer.Alignment.CENTER, "www.anlyedu.com\n");
+                        printer.printText(Printer.Alignment.CENTER, "www.onlyedu.com\n");
                         printer.printText("\n");
                         printer.printText("\n");
                         printer.feedLine(3);
@@ -465,7 +465,7 @@ public class EPTPrintPlugin extends CordovaPlugin {
                         printer.printText("\n");
                         printer.printText("\n");
                         printer.printText("\n");
-                        printer.printText(Printer.Alignment.CENTER, "www.anlyedu.com\n");
+                        printer.printText(Printer.Alignment.CENTER, "www.onlyedu.com\n");
                         printer.printText("\n");
                         printer.printText("\n");
                         printer.feedLine(3);

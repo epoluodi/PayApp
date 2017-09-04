@@ -33,7 +33,9 @@ cordova.define("onlyedu.com.payapp.Plugin.SystemPlugin", function(require,export
         goback: function() {
            exec(null, null, "SystemPlugin", "goback", [null]);
         },
-
+        closeReturn: function() {
+           exec(null, null, "SystemPlugin", "closeReturn", [null]);
+        },
     };
 
 });

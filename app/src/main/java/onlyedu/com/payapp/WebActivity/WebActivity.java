@@ -142,6 +142,9 @@ public class WebActivity extends AppCompatActivity implements CordovaInterface {
             catch (Exception e)
             {e.printStackTrace();}
 
+        }else if (id.equals("closeReturn"))
+        {
+            finish();
         }
 
         return null;
