@@ -24,16 +24,17 @@ import onlyedu.com.payapp.WebActivity.WebActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RelativeLayout btn1,btn2,btn3,btn4;
+    private RelativeLayout btn1, btn2, btn3, btn4;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        btn1 = (RelativeLayout)findViewById(R.id.btn1);
-        btn2 = (RelativeLayout)findViewById(R.id.btn2);
-        btn3 = (RelativeLayout)findViewById(R.id.btn3);
-        btn4 = (RelativeLayout)findViewById(R.id.btn4);
+        btn1 = (RelativeLayout) findViewById(R.id.btn1);
+        btn2 = (RelativeLayout) findViewById(R.id.btn2);
+        btn3 = (RelativeLayout) findViewById(R.id.btn3);
+        btn4 = (RelativeLayout) findViewById(R.id.btn4);
 
         btn1.setOnClickListener(onClickListenerbtn1);
         btn2.setOnClickListener(onClickListenerbtn2);
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         LibConfig.context = getApplicationContext();
         HttpUrl.host = LibConfig.getKeyShareVarForString("host");
 
+
     }
 
 
@@ -50,21 +52,21 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
 
-            final EditText editText=new EditText(MainActivity.this);
+            final EditText editText = new EditText(MainActivity.this);
             editText.setText(HttpUrl.host);
-            AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
             builder.setTitle("输入测试服务地址");
             builder.setView(editText);
             builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    LibConfig.setKeyShareVar("host",editText.getText().toString());
+                    LibConfig.setKeyShareVar("host", editText.getText().toString());
                     HttpUrl.host = editText.getText().toString();
                     dialogInterface.dismiss();
                 }
             });
-            builder.setNeutralButton("取消",null);
-            AlertDialog alertDialog=builder.create();
+            builder.setNeutralButton("取消", null);
+            AlertDialog alertDialog = builder.create();
             alertDialog.show();
 
         }
@@ -77,9 +79,9 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener onClickListenerbtn1 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent intent=new Intent(MainActivity.this, ScanActivity.class);
-            intent.putExtra("mode",0);
-            startActivityForResult(intent,ScanActivity.SCANRESULTREQUEST);
+            Intent intent = new Intent(MainActivity.this, ScanActivity.class);
+            intent.putExtra("mode", 0);
+            startActivityForResult(intent, ScanActivity.SCANRESULTREQUEST);
 
         }
     };
@@ -93,12 +95,10 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 DeviceService.login(getApplicationContext());
-                Toast.makeText(MainActivity.this,"签到成功",Toast.LENGTH_SHORT).show();
-            }
-            catch (Exception e)
-            {
+                Toast.makeText(MainActivity.this, "签到成功", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
                 e.printStackTrace();
-                Toast.makeText(MainActivity.this,"签到失败",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "签到失败", Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -109,9 +109,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
 
-            Toast.makeText(MainActivity.this,"暂时没有开放",Toast.LENGTH_SHORT).show();
-            Intent intent=new Intent(MainActivity.this, WebActivity.class);
-            intent.putExtra("url","file:///android_asset/www/index.html");//file:///android_asset/www/index.html
+            Toast.makeText(MainActivity.this, "暂时没有开放", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, WebActivity.class);
+            intent.putExtra("url", "file:///android_asset/www/index.html");//file:///android_asset/www/index.html
             startActivity(intent);
         }
     };
@@ -122,15 +122,13 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
 
-        if (requestCode ==ScanActivity.SCANRESULTREQUEST)
-        {
-            if (resultCode ==1)
-            {
-                String code =data.getExtras().getString("code");
-                Log.i("条码:" ,code);
+        if (requestCode == ScanActivity.SCANRESULTREQUEST) {
+            if (resultCode == 1) {
+                String code = data.getExtras().getString("code");
+                Log.i("条码:", code);
 //                HttpUrl.codeUrl = String.format(HttpUrl.codeUrlModel,HttpUrl.host,code);
-                Intent intent=new Intent(MainActivity.this,WebActivity.class);
-                intent.putExtra("url",code);
+                Intent intent = new Intent(MainActivity.this, WebActivity.class);
+                intent.putExtra("url", code);
                 startActivity(intent);
             }
         }

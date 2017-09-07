@@ -1,5 +1,6 @@
 package onlyedu.com.payapp.Plugin;
 
+import android.util.Log;
 import android.widget.Toast;
 
 import com.landicorp.android.eptapi.DeviceService;
@@ -171,12 +172,29 @@ public class EPTPrintPlugin extends CordovaPlugin {
                         format.setAscScale(Printer.Format.ASC_SC1x2);
                         format.setHzScale(Printer.Format.HZ_SC1x2);
                         printer.setFormat(format);
-                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("merchantName") + "\n");
+
+
+                        String s = jsonObject.getString("merchantName");
+                        if (s.length()>16 )
+                        {
+                            int l = 32 -s.length();
+                            for (int i=0;i<l;i++)
+                            {
+                                s = s+"%";
+                            }
+                            String str1 = s.substring(0,16);
+                            String str2 = s.substring(16,32);
+                            printer.printText(Printer.Alignment.LEFT, str1 + "\n");
+                            printer.printText(Printer.Alignment.LEFT, str2.replace("%","") + "\n");
+                        }
+                        else
+                            printer.printText(Printer.Alignment.LEFT, jsonObject.getString("merchantName") + "\n");
+
                         format.setAscScale(Printer.Format.ASC_SC1x1);
                         format.setHzScale(Printer.Format.HZ_SC1x1);
                         printer.setFormat(format);
-                        printer.printText("商户编号(MERCHANT NO):\n");
-                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("merchantNo") + "\n");
+//                        printer.printText("商户编号(MERCHANT NO):\n");
+//                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("merchantNo") + "\n");
                         printer.printText("操作员号(OPERATOR NO):\n");
                         printer.printText(Printer.Alignment.LEFT, jsonObject.getString("operatorNo") + "\n");
                         printer.printText("交易类型(TRANS TYPE):\n");
@@ -290,12 +308,28 @@ public class EPTPrintPlugin extends CordovaPlugin {
                         format.setAscScale(Printer.Format.ASC_SC1x2);
                         format.setHzScale(Printer.Format.HZ_SC1x2);
                         printer.setFormat(format);
-                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("merchantName") + "\n");
+
+                        String s = jsonObject.getString("merchantName");
+                        if (s.length()>16 )
+                        {
+                            int l = 32 -s.length();
+                            for (int i=0;i<l;i++)
+                            {
+                                s = s+"%";
+                            }
+                            String str1 = s.substring(0,16);
+                            String str2 = s.substring(16,32);
+                            printer.printText(Printer.Alignment.LEFT, str1 + "\n");
+                            printer.printText(Printer.Alignment.LEFT, str2.replace("%","") + "\n");
+                        }
+                        else
+                            printer.printText(Printer.Alignment.LEFT, jsonObject.getString("merchantName") + "\n");
+
                         format.setAscScale(Printer.Format.ASC_SC1x1);
                         format.setHzScale(Printer.Format.HZ_SC1x1);
                         printer.setFormat(format);
-                        printer.printText("商户编号(MERCHANT NO):\n");
-                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("merchantNo") + "\n");
+//                        printer.printText("商户编号(MERCHANT NO):\n");
+//                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("merchantNo") + "\n");
                         printer.printText("操作员号(OPERATOR NO):\n");
                         printer.printText(Printer.Alignment.LEFT, jsonObject.getString("operatorNo") + "\n");
                         printer.printText("交易类型(TRANS TYPE):\n");
@@ -415,7 +449,23 @@ public class EPTPrintPlugin extends CordovaPlugin {
                         format.setAscScale(Printer.Format.ASC_SC1x2);
                         format.setHzScale(Printer.Format.HZ_SC1x2);
                         printer.setFormat(format);
-                        printer.printText(Printer.Alignment.LEFT, jsonObject.getString("merchantName") + "\n");
+
+                        String s = jsonObject.getString("merchantName");
+                        if (s.length()>16 )
+                        {
+                            int l = 32 -s.length();
+                            for (int i=0;i<l;i++)
+                            {
+                                s = s+"%";
+                            }
+                            String str1 = s.substring(0,16);
+                            String str2 = s.substring(16,32);
+                            printer.printText(Printer.Alignment.LEFT, str1 + "\n");
+                            printer.printText(Printer.Alignment.LEFT, str2.replace("%","") + "\n");
+                        }
+                        else
+                            printer.printText(Printer.Alignment.LEFT, jsonObject.getString("merchantName") + "\n");
+
                         format.setAscScale(Printer.Format.ASC_SC1x1);
                         format.setHzScale(Printer.Format.HZ_SC1x1);
                         printer.setFormat(format);
