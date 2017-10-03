@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/splash_background"
+    tools:context="onlyedu.com.payapp.MainActivity">
+
+
+    <RelativeLayout
+        android:layout_margin="16dp"
+        android:background="@drawable/splash_back_white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:src="@mipmap/splash_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:id="@+id/head"
+            />
+
+        <RelativeLayout
+            android:id="@+id/view_scan"
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="38dp"
+            android:background="@drawable/splash_scan_selector"
+
+            android:layout_marginLeft="36dp"
+            android:layout_marginRight="36dp"
+            android:layout_below="@+id/head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/scan_ico_img"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/scan_ico"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="合同扫码"
+                android:textSize="32dp"
+                android:textColor="@color/blackTransparent8"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/scan_ico_img"
+                android:layout_marginBottom="22dp"
+                android:textStyle="bold"
+                />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/btnscanlogin"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginRight="36dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/view_scan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/btn_scan_login"
+            />
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+</RelativeLayout>

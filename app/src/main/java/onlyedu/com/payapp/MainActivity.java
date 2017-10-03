@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -24,22 +25,22 @@ import onlyedu.com.payapp.WebActivity.WebActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RelativeLayout btn1, btn2, btn3, btn4;
+    private RelativeLayout view_scan;
+    private ImageView btnscanlogin,headimg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
-        btn1 = (RelativeLayout) findViewById(R.id.btn1);
-        btn2 = (RelativeLayout) findViewById(R.id.btn2);
-        btn3 = (RelativeLayout) findViewById(R.id.btn3);
-        btn4 = (RelativeLayout) findViewById(R.id.btn4);
+        setContentView(R.layout.activity_main_new1);
+        view_scan = (RelativeLayout) findViewById(R.id.view_scan);
+        btnscanlogin = (ImageView) findViewById(R.id.btnscanlogin);
+        headimg = (ImageView) findViewById(R.id.head);
 
-        btn1.setOnClickListener(onClickListenerbtn1);
-        btn2.setOnClickListener(onClickListenerbtn2);
-        btn3.setOnClickListener(onClickListenerbtn3);
-        btn4.setOnClickListener(onClickListenerbtn4);
+        view_scan.setOnClickListener(onClickListenerbtn1);
+        btnscanlogin.setOnClickListener(onClickListenerbtn2);
+        headimg.setOnClickListener(onClickListenerbtn4);
+
 
         LibConfig.context = getApplicationContext();
         HttpUrl.host = LibConfig.getKeyShareVarForString("host");
