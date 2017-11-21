@@ -69,6 +69,7 @@ public class ScanActivity extends Activity implements Callback {
 
 
     private Button btnpaycode;
+    private ImageView btnreturn;
 
     private String htid= "";
     /**
@@ -103,6 +104,14 @@ public class ScanActivity extends Activity implements Callback {
 
         }
 
+        btnreturn = (ImageView)findViewById(R.id.btnreturn);
+        btnreturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                overridePendingTransition(R.anim.alpha, R.anim.slide_out_to_bottom);
+            }
+        });
 
         mainview = (FrameLayout) findViewById(R.id.mainview);
 

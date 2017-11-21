@@ -190,15 +190,16 @@ public class WebActivity extends AppCompatActivity implements CordovaInterface {
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode ==4)
         {
-            if (cordovaWebView.canGoBack())
-            {
-                cordovaWebView.goBack();
-                return false;
-            }
-            else {
-                finish();
-                return false;
-            }
+//            if (cordovaWebView.canGoBack())
+//            {
+//                cordovaWebView.goBack();
+//                return false;
+//            }
+//            else {
+//                finish();
+//                return false;
+//            }
+            return false;
         }
         return super.onKeyUp(keyCode, event);
 

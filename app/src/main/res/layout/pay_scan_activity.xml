@@ -34,7 +34,7 @@
 
         <TextView
             android:id="@+id/title_text"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
@@ -50,6 +50,15 @@
             android:textSize="24dp" />
 
 
+        <ImageView
+            android:clickable="true"
+            android:id="@+id/btnreturn"
+            android:layout_width="50dp"
+            android:layout_height="26dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/back_bar_left_selector"
+            />
 
     </RelativeLayout>
 
